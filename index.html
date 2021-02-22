@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style>
+		body{
+zoom: 200%;
+}
+		body{
+			font-weight: bold;
+		}
+		table,th,td,tr{
+			border: 1px solid black;
+			background: #010101;
+
+		}
+		.in{
+			background-color: transparent;
+			border: 1;
+			border-color: white;
+			margin-top: 1px;
+			margin-bottom: 1px;
+			width: 300px;
+			text-align: right;
+			color:  white;
+		}
+		.verticalTableHeader {
+			text-align:center;
+			white-space:nowrap;
+			border: 0;
+			transform-origin:50% 50%;
+			transform: rotate(90deg);
+			margin-left: -25px;
+			margin-right: -25px;
+			margin-top: 30px;
+			margin-bottom: 35px;
+			border-radius: 8px;
+		}
+		.btn{
+			border-radius: 50%;
+			height: 35px;
+			width: 35px;
+			font-size: 9px;
+			border: 0;
+			color:white;
+			background: #151515;
+
+
+
+			height: 30px;
+			width: 40px;
+
+			font-size: 12px;
+			cursor: pointer;
+			border-radius: 12px;
+		}
+		.btn-0{
+
+			background-color:#292929; /* Green */
+			border: none;
+			color: white;
+			height: 35px;
+			width: 80px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 12px;
+		}
+
+		.b1{
+			background: #ffa602;
+		}
+		.b2{
+			background: #292929;
+		}
+		.b3{
+			background: #aeaeae;
+		}
+	</style>
+
+</head>
+
+<body onclick="focusInput()" align="center">
+
+
+
+	<table align="center" cellspacing="0">	
+		<form>
+			<tr>
+				<td colspan="7"><input class="in" type="text" id="ecran"></td>
+			</tr>
+
+			<tr>
+				
+				
+				<td><input class="btn" type="button" value="ln x" onclick="LnX()"></td>
+				<td><input class="btn" type="button" value="x^2" onclick="squared()"></td>
+				<td><input class="btn b3" type="button" value="M+" onclick="AddX()"></td>
+				<td><input class="btn b3" type="button" value="M -" onclick="RemoveX()"></td>
+				<td><input class="btn b3" type="button" value="&#x03C0" onclick="afisPi()"></td>
+				<td><input class="btn b1" type="button" value="e" onclick="afisE()"></td>
+				<td rowspan="3"><input class="verticalTableHeader b1" type="button" value="M afisare" onclick="ShowX()"></td>
+			</tr>
+
+			<tr>
+				
+				<td><input class="btn" type="button" value="1/x" onclick="DivideX()"></td>
+				<td><input class="btn" type="button" value="&#8730 x" onclick="RadicalX()"></td>
+				<td><input class="btn b3" type="button" value="C" onclick="clr()"></td>
+				<td><input class="btn b3" type="button" value="(" onclick="afis(this)"></td>
+				<td><input class="btn b3" type="button" value=")" onclick="afis(this)"></td>
+				<td><input class="btn b1" type="button" value="/" onclick="afis(this)"></td>
+			</tr>
+
+
+			<tr>	
+				
+				<td><input class="btn" type="button" value="x^y" onclick="xByY()"></td>
+				<td><input class="btn" type="button" value="10^x" onclick="TenX()"></td>
+				<td><input class="btn b2" type="button" value="7" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="8" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="9" onclick="afis(this)"></td>
+				<td><input class="btn b1" type="button" value="*" onclick="afis(this)"></td>
+			</tr>	
+			<tr>
+				
+				<td><input class="btn" type="button" value="log x" onclick="LogX()"></td>
+				<td><input class="btn" type="button" value="|x|" onclick="AbsX()"></td>
+				<td><input class="btn b2" type="button" value="4" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="5" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="6" onclick="afis(this)"></td>
+				<td><input class="btn b1" type="button" value="-" onclick="afis(this)"></td>
+				<td rowspan="3"><input class="verticalTableHeader b1" type="button" value="M curatare" onclick="DeleteAll()"></td>
+			</tr>	
+			<tr>	
+				
+				<td><input class="btn" type="button" value="sin(x)" onclick="SinX()"></td>
+				<td><input class="btn" type="button" value="x!" onclick="FactorialX()"></td>
+				<td><input class="btn b2" type="button" value="1" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="2" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="3" onclick="afis(this)"></td>
+				<td><input class="btn b1" type="button" value="+" onclick="afis(this)"></td>
+			</tr>	
+			<tr>
+				
+				<td><input class="btn" type="button" value="cos(x)" onclick="CosX()"></td>
+				<td><input class="btn" type="button" value="tan(x)" onclick="TanX()"></td>
+				<td colspan="2"><input class="btn-0 b2" type="button" value="0" onclick="afis(this)"></td>
+				<td><input class="btn b2" type="button" value="." onclick="afis(this)"></td>
+				<td><input class="btn b1" type="button" value="=" onclick="res()"></td>
+
+			</tr>
+		</form>
+	</table>
+	<script>
+
+		var ecran = document.getElementById('ecran');
+		var tablou = new Array();
+
+		function AddX(){
+			var j = parseInt(prompt("introduceti numarul casetei de salvare:"));
+			if(j>=0){
+				var m = parseInt(prompt("introduceti numarul:"));
+				if(m>=0 || m<0)
+					tablou[j]=m;
+			}
+		}
+		function ShowX(){
+			var j = parseInt(prompt("introduceti numarul casetei:"));
+			if(tablou[j]!=undefined){
+				ecran.value += tablou[j]; }
+			}
+			function DeleteAll(){
+				tablou=[];
+			}
+			function RemoveX(){
+				var j = parseInt(prompt("introduceti numarul casetei:"));
+				if(j>=0) tablou[j]=undefined;
+			}
+			function clr(){
+				ecran.value = '';
+			}
+			function afis(element){
+				ecran.value += element.value;
+			}
+			function afisPi(){
+				ecran.value += 3.14;
+			}		
+			function afisE(){
+				ecran.value += 2.71;
+			}
+			function res(){
+				ecran.value = eval(ecran.value);
+			}
+			function squared(){
+				ecran.value = Math.pow(ecran.value, 2);
+			}
+			function xByY(){
+				let parts = ecran.value.split(' ');
+				ecran.value = Math.pow(parts[0], parts[1]);
+			}
+			function RadicalX(){
+				ecran.value = Math.sqrt(eval(ecran.value));
+			}
+			function LnX(){
+				ecran.value = Math.log(eval(ecran.value));
+			}
+			function LogX(){
+				ecran.value = Math.log(eval(ecran.value)) / Math.log(10);
+			}
+			function AbsX(){
+				ecran.value = Math.abs(eval(ecran.value));
+			}
+			function DivideX(){
+				ecran.value = 1/eval(ecran.value);
+			}
+			function TenX(){
+				ecran.value = Math.pow(10,ecran.value);
+			}
+			function SinX(){
+				ecran.value = Math.sin(eval(ecran.value));
+			}
+			function CosX(){
+				ecran.value = Math.cos(eval(ecran.value));
+			}
+			function TanX(){
+				ecran.value = Math.tan(eval(ecran.value));
+			}
+			function factorial(num) {
+				if (num < 0) 
+					return -1;
+				else if (num == 0) 
+					return 1;
+				else {
+					return (num * factorial(num - 1));
+				}
+			}
+			function FactorialX(){
+				ecran.value = factorial(eval(ecran.value));
+			}
+
+
+
+			function focusInput(){
+				ecran.focus();
+			}
+
+			
+		</script>
+
+	</body>
+	</html>
